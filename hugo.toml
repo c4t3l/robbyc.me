@@ -1,4 +1,6 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://robbyc.me/'
 locale = 'en-us'
-title = 'My New Hugo Project'
-theme = 'rusty-typewriter'
+title = "Robby's Blog"
+
+[[module.imports]]
+path = 'github.com/math-queiroz/rusty-typewriter'
