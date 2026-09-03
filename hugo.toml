@@ -1,6 +1,6 @@
 baseURL = 'https://robbyc.me/'
 locale = 'en-us'
-title = "Robby's Blog"
+title = "Robby Callicotte"
 
 [[module.imports]]
 path = 'github.com/math-queiroz/rusty-typewriter'
