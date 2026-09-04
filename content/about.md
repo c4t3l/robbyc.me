@@ -17,6 +17,6 @@ My name is Robby.  I've been a Linux systems engineer for the last twenty years.
     - XMPP server/client buildouts
     - Automated Configuration Management 
 
-I am currently a member of the [EPEL Steering Commitee](https://docs.fedoraproject.org/en-US/epel/epel-policy-steering-committee/), the [CentOS Alternative Images SIG](https://sigs.centos.org/altimages/), and I maintain several [Fedora packages](https://src.fedoraproject.org/user/rcallicotte/projectsr).
+I am currently a member of the [EPEL Steering Commitee](https://docs.fedoraproject.org/en-US/epel/epel-policy-steering-committee/), the [CentOS Alternative Images SIG](https://sigs.centos.org/altimages/), and I maintain several [Fedora packages](https://src.fedoraproject.org/user/rcallicotte/projects).
 
 When I'm not busy working on computer related things you can find me chilling with my wife Marcela and our four pets - Gizmo, Conan, Niño, and Sid.
