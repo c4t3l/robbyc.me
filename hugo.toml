@@ -1,6 +1,74 @@
 baseURL = 'https://robbyc.me/'
 locale = 'en-us'
-title = "Robby Callicotte"
+title = "Robby's Blog"
 
 [[module.imports]]
 path = 'github.com/math-queiroz/rusty-typewriter'
+
+[params.author]
+name = 'Robby Callicotte'
+
+# Rusty Typewriter Theme (rtwt)
+[rusty_typewriter]
+ [params.rtwt]
+  sidePane = true
+  countPageItems = 7 
+
+ [params.rtwt.home]
+  showBio = true
+  showAuthorImg = true
+  sidePaneTags = true
+  showFeatured = true
+  showRecent = true
+  hideRecentWhenFeatured = true
+  countRecent = 5
+
+ [params.rtwt.side.home]
+  sidePaneSticky = false 
+  taxonomies = ['tags']
+  countTaxonomy = 5
+
+ [params.rtwt.side.list]
+  sidePaneSticky = false
+
+ [params.rtwt.side.single]
+  sidePaneSticky = true 
+  showDetails = true
+  showTableOfContents = true
+  showAttachments = true
+  showRelated = true
+  countRelated = 5
+
+[taxonomies]
+tag = 'tags'
+
+[[menus.main]]
+name = 'Posts'
+pageRef = '/posts'
+weight = 1
+
+[[menus.main]]
+name = 'Archives'
+pageRef = '/archives'
+weight = 2
+
+[[menus.main]]
+name = 'About'
+pageRef = '/about.md'
+weight = 3
+
+# build search index ================
+[outputFormats]
+ [outputFormats.SearchIndex]
+  mediaType = "application/json"
+  baseName = "searchindex"
+  isPlainText = true
+  notAlternative = true
+
+[mediaTypes]
+ [mediaTypes."application/json"]
+  suffixes = ["json"]
+
+[outputs]
+ home = ["HTML","RSS","SearchIndex"]
+# ===================================

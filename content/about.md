@@ -1,6 +1,5 @@
 +++
 date = '2026-09-02T22:27:43-05:00'
-menus = 'main'
 type = 'blank'
 title = 'About'
 +++
