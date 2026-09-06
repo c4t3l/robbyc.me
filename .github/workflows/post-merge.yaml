@@ -1,10 +1,11 @@
 ---
 name: Build and Deploy
 on:
-  workflow_run:
-    workflows: ["Pre-merge Build Check"]
+  pull_request:
+    branches:
+      - main
     types:
-      - completed
+      - closed
 
 permissions:
   contents: read
@@ -19,8 +20,8 @@ env:
 jobs:
   build:
     name: Build
+    if: ${{ github.event.pull_request.merged == 'true' }}
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclussion == 'success' }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@main
