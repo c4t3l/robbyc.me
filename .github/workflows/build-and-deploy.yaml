@@ -1,0 +1,72 @@
+---
+name: Build and Deploy
+on:
+  workflow_run:
+    workflows: ["Pre-merge Build Check"]
+    types:
+      - completed
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  HUGO_VERSION: "0.160.1"
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclussion == 'success' }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@main
+
+      - name: Setup Go
+        uses: actions/setup-go@v7
+        with:
+          go-version: stable
+
+      - name: Setup Hugo
+        run: |
+          HUGO_DOWNLOAD_URL="https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.tar.gz"
+          curl -sL --retry 5 "$HUGO_DOWNLOAD_URL" | tar xvzf - hugo
+          ./hugo version
+
+      - name: Build with Hugo
+        env:
+          HUGO_ENVIRONMENT: production
+          HUGO_ENV: production
+        run: ./hugo -gc --minify
+
+      - name: Archive site artifacts
+        uses: actions/upload-artifact@main
+        with:
+          name: public
+          path: public
+
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@main
+      - name: Download artifact
+        uses: actions/download-artifact@main
+        with:
+          name: public
+          path: public
+      - name: Sync files to hosting
+        uses: burnett01/rsync-deployments@v9
+        with:
+          switches: -avzr --delete
+          path: public/
+          remote_path: ${{ secrets.REMOTE_PATH }}
+          remote_host: ${{ secrets.REMOTE_HOST }}
+          remote_port: ${{ secrets.REMOTE_PORT }}
+          remote_user: ${{ secrets.REMOTE_USER }}
+          remote_key: ${{ secrets.REMOTE_PRIVATE_KEY }}
