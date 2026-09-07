@@ -1,6 +1,7 @@
 +++
 date = '2009-08-08T22:38:57-05:00'
 title = 'Dan Electro Show'
+tags = ['music', 'Letters to Voltron']
 +++
 
 
