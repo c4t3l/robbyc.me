@@ -7,9 +7,6 @@ on:
     types:
       - closed
 
-permissions:
-  contents: read
-
 defaults:
   run:
     shell: bash
@@ -19,12 +16,12 @@ env:
 
 jobs:
   build:
-    name: Build
-    if: ${{ github.event.pull_request.merged == 'true' }}
+    name: Build Site
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
-        uses: actions/checkout@main
+        uses: actions/checkout@v4
 
       - name: Setup Go
         uses: actions/setup-go@v7
