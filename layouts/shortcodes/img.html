@@ -1,0 +1,14 @@
+{{- $src := .Get "src" -}}
+{{- $size := .Get "size" | default "800x600" -}} {{/* .Fit requires both dimensions */}}
+{{- $alt := .Get "alt" | default "" -}}
+
+{{- /* Fetch the image from the current Page Bundle */ -}}
+{{- $img := .Page.Resources.GetMatch $src -}}
+
+{{- if $img -}}
+  {{- /* Downscale proportionally to fit inside the bounding box */ -}}
+  {{- $resized := $img.Fit $size -}}
+  <img src="{{ $resized.RelPermalink }}" width="{{ $resized.Width }}" height="{{ $resized.Height }}" alt="{{ $alt }}">
+{{- else -}}
+  <img src="{{ $src | relURL }}" alt="{{ $alt }}">
+{{- end -}}
